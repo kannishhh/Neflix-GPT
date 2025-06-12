@@ -1,7 +1,63 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "./Header";
+import checkValidData from "../utilities/validate";
+import { auth } from "../utilities/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [erorMessage, setErrorMessage] = useState(null);
+  const email = useRef(null);
+  // const mobile = useRef(null);
+  const password = useRef(null);
+
+  const handleButtonClick = () => {
+    console.log(email.current.value);
+    console.log(password.current.value);
+
+    const message = checkValidData(email.current.value, password.current.value);
+    setErrorMessage(message);
+
+    if (message) return;
+
+    if (!isSignInForm) {
+      //  --------Sign Up----------
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed Up
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " " + errorMessage);
+        });
+    } else {
+      // ----------Sign In------------
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed In
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + " " + errorMessage);
+        });
+    }
+  };
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -12,12 +68,15 @@ const Login = () => {
       <Header />
       <div className="absolute ">
         <img
-        className=" "
+          className=" "
           src="https://assets.nflxext.com/ffe/siteui/vlv3/7968847f-3da9-44b3-8bbb-13a46579881f/web/IN-en-20250609-TRIFECTA-perspective_32b70b51-20d4-46db-8a1a-3d5428be5f0e_large.jpg"
           alt="Background_logo"
         />
       </div>
-      <form className="absolute w-3/10 p-12 bg-[rgba(0,0,0,0.8)] my-24 mx-auto left-0 right-0 text-white rounded-md">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute w-3/10 p-12 bg-[rgba(0,0,0,0.8)] my-24 mx-auto left-0 right-0 text-white rounded-md"
+      >
         <h1 className="font-bold text-3xl py-4">
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
@@ -25,20 +84,26 @@ const Login = () => {
           <input
             type="text"
             placeholder="Full Name"
-            className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400"
+            className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400 focus:ring-2"
           />
         )}
         <input
+          ref={email}
           type="text"
           placeholder="Email or mobile number"
-          className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400"
+          className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400 focus:ring-2"
         />
         <input
+          ref={password}
           type="password"
           placeholder="Password"
-          className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400"
+          className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400 focus:ring-2"
         />
-        <button className="p-2 my-3 bg-red-600 w-full font-semibold rounded cursor-pointer hover:bg-red-700">
+        <p className="text-red-600 text-md mt-2">{erorMessage}</p>
+        <button
+          className="p-2 my-3 bg-red-600 w-full font-semibold rounded cursor-pointer hover:bg-red-700"
+          onClick={handleButtonClick}
+        >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
         <h1 className="w-full text-gray-400 text-center font-medium">OR</h1>
@@ -78,7 +143,9 @@ const Login = () => {
         <p className="text-sm text-gray-400 mt-2">
           This page is protected by Google reCAPTCHA to ensure you're not a bot.
         </p>
-        <a href="#" className="text-blue-500 text-sm underline">Learn more</a>
+        <a href="#" className="text-blue-500 text-sm underline">
+          Learn more
+        </a>
       </form>
     </div>
   );
