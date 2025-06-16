@@ -5,17 +5,27 @@ import { auth } from "../utilities/firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser } from "../stores/userSlice";
+import { BG_LOGO } from "../utilities/constants";
+
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [erorMessage, setErrorMessage] = useState(null);
+
+  const dispatch = useDispatch();
+
+  const name = useRef(null);
   const email = useRef(null);
-  // const mobile = useRef(null);
   const password = useRef(null);
 
   const handleButtonClick = () => {
-    console.log(email.current.value);
-    console.log(password.current.value);
+    // console.log(name)
+    // console.log(email.current.value);
+    // console.log(password.current.value);
+
 
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
@@ -32,7 +42,24 @@ const Login = () => {
         .then((userCredential) => {
           // Signed Up
           const user = userCredential.user;
-          console.log(user);
+          updateProfile(user, {
+            displayName: name.current.value,
+            // photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  // photoURL: photoURL,
+                })
+              );
+            })
+            .catch((error) => {
+              setErrorMessage(error.message);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -47,9 +74,7 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // Signed In
-          const user = userCredential.user;
-          console.log(user);
+          setIsSignInForm(userCredential);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -68,8 +93,7 @@ const Login = () => {
       <Header />
       <div className="absolute ">
         <img
-          className=" "
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/7968847f-3da9-44b3-8bbb-13a46579881f/web/IN-en-20250609-TRIFECTA-perspective_32b70b51-20d4-46db-8a1a-3d5428be5f0e_large.jpg"
+          src={BG_LOGO}
           alt="Background_logo"
         />
       </div>
@@ -82,6 +106,7 @@ const Login = () => {
         </h1>
         {!isSignInForm && (
           <input
+            ref={name}
             type="text"
             placeholder="Full Name"
             className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400 focus:ring-2"
@@ -91,12 +116,14 @@ const Login = () => {
           ref={email}
           type="text"
           placeholder="Email or mobile number"
+          autoComplete="email-mobile"
           className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400 focus:ring-2"
         />
         <input
           ref={password}
           type="password"
           placeholder="Password"
+          autoComplete="current-password"
           className="p-3 my-2 w-full bg-gray-600/10 rounded border border-gray-400 focus:ring-2"
         />
         <p className="text-red-600 text-md mt-2">{erorMessage}</p>
