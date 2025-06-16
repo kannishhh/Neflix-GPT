@@ -1,7 +1,65 @@
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../utilities/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { addUser, removeUser } from "../stores/userSlice";
+import { LOGO_URL } from "../utilities/constants";
+import { AVATAR_RED } from "../utilities/constants";
+// import Logo from "../../logo.png";
+
 const Header = () => {
+  const navigate = useNavigate();
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {})
+      .catch(() => {
+        // console.log(error);
+        navigate("/error");
+      });
+  };
+
+  useEffect(() => {
+    const subscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    return () => subscribe();
+  }, []);
+
   return (
-    <div className="w-full px-36 py-2 absolute bg-gradient-to-b from-black z-10">
-      <img src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt="logo" className="w-48"/>
+    <div className="w-full px-8 md:px-36 py-4 absolute z-10 flex justify-between items-center bg-gradient-to-b from-black">
+      <img src={LOGO_URL} alt="logo" className="w-44 md:w-52" />
+      {user && (
+        <div className="flex py-2">
+          <img
+            className="h-10 w-10 rounded-sm"
+            src={AVATAR_RED}
+            alt="avatar-red"
+          />
+          <button
+            onClick={handleSignOut}
+            className="font-bold text-white cursor-pointer px-2"
+          >
+            (Sign Out)
+          </button>
+        </div>
+      )}
     </div>
   );
 };
