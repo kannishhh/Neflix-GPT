@@ -1,25 +1,23 @@
 import Header from "./Header";
 import ShowCase from "./showCase";
 import MoviesRow from "./moviesRow";
-import useMovies from "../hooks/useMovies";
+import usePopularMovies from "../hooks/usePopularMovies";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import useNowPlayingMovies from "../hooks/useMovies";
+import useTrendingMovies from "../hooks/useTrendingMovies";
 
 
 const Browse = () => {
-  useMovies();
+  useNowPlayingMovies();
+  usePopularMovies();
+  useUpcomingMovies();
+  useTrendingMovies();
 
   return (
     <div>
       <Header />
       <ShowCase />
       <MoviesRow />
-      {/* 
-      - Main container 
-        - Background trailer
-        - Movie Title 
-      - Second container
-        - Movie List * n
-          - cards * n  
-        */}
     </div>
   );
 };
