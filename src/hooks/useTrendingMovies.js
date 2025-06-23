@@ -10,8 +10,7 @@ const useTrendingMovies = () => {
       "https://api.themoviedb.org/3/trending/tv/day?language=en-US",
       API_OPTIONS
     );
-    const json = await data.json();
-    console.log(json.results);
+    const json = await data.json()
     dispatch(addTrendingMovies(json.results));
   };
 
