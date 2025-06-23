@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../stores/userSlice";
-import { BG_LOGO } from "../utilities/constants";
+import { BG_URL } from "../utilities/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -25,7 +25,6 @@ const Login = () => {
     // console.log(name)
     // console.log(email.current.value);
     // console.log(password.current.value);
-
 
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
@@ -92,10 +91,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute ">
-        <img
-          src={BG_LOGO}
-          alt="Background_logo"
-        />
+        <img src={BG_URL} alt="Background_logo" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
