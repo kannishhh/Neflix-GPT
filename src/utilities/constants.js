@@ -10,8 +10,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YzUzNWI3ZWUwNmM4MjllYjhjNjI4YWM4ODg3N2MyMCIsIm5iZiI6MTc0OTgxMTA0NC43MjQsInN1YiI6IjY4NGJmZjY0OGIwYzNkMWMwM2IwZDkzMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RuGe1vOGy00VWdyjQju9k4F4izZsowMwPd7bkturtMw",
+    Authorization: "Bearer " + import.meta.env.VITE_TMDB_KEY,
   },
 };
 
@@ -24,3 +23,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "spanish", name: "Spanish" },
   { identifier: "french", name: "French" },
 ];
+
+export const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
