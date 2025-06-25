@@ -10,8 +10,7 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer ***REMOVED***",
+    Authorization: "Bearer " + import.meta.env.VITE_TMDB_KEY,
   },
 };
 
@@ -24,3 +23,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: "spanish", name: "Spanish" },
   { identifier: "french", name: "French" },
 ];
+
+export const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
