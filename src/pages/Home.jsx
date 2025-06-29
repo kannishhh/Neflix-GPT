@@ -1,23 +1,85 @@
-import Header from "./Header";
+import { BG_URL } from "../utilities/constants";
+import { useSelector } from "react-redux";
+import MovieList from "./MovieList";
+import useTrendingMovies from "../hooks/useTrendingMovies";
+import FeatureCard from "./FeatureCard";
+import FAQAccordion from "./FAQAccordion";
+import DefaultFooter from "../layouts/defaultFooter";
+import DefaultHeader from "../layouts/DefaultHeader";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+  useTrendingMovies();
+
+  const movies = useSelector((store) => store.movies);
+
   return (
     <div>
-      <Header />
+      <DefaultHeader />
 
-      <div className="">
+      <div className="relative w-full h-screen">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/7968847f-3da9-44b3-8bbb-13a46579881f/web/IN-en-20250609-TRIFECTA-perspective_32b70b51-20d4-46db-8a1a-3d5428be5f0e_large.jpg"
-          alt="Background_logo"
+          src={BG_URL}
+          alt="Background_Img"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-tr from-black/90 via-transparent via-100% to-black/90"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white px-4 z-10 w-screen max-w-3xl">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
+            Unlimited movies, TV
+          </h1>
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+            shows and more
+          </h1>
+          <p className="text-lg md:text-xl lg:text-2xl mb-6">
+            Starts at ₹149. Cancel at any time.
+          </p>
+          <p className="text-base md:text-lg font-semibold mb-5">
+            Ready to watch? Enter your email to create or restart your
+            membership.
+          </p>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-2 max-w-2xl mx-auto">
+            <input
+              type="email"
+              placeholder="Email address"
+              className="flex-grow w-screen md:w-auto p-4 bg-black/60 border border-white/60 rounded text-white text-lg font-semibold placeholder-gray-300 focus:outline-solid focus:ring-2 focus:ring-white"
+            />
+            <Link>
+              <button className="w-screen md:w-auto bg-red-700 hover:bg-red-800 text-white font-bold py-4 px-12 rounded text-2xl transition duration-300 ease-in-out">
+                Get Started &gt;
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
-      {/* <div className="absolute">
-        <select className="absolute">
-          <option>English</option>
-          <option>Hindi</option>
-        </select>
-        <button>Sign In</button>
-      </div> */}
+      <div className="relative w-full h-2 -mt-4 z-50">
+        <div className="absolute -bottom-1 w-full h-2 bg-gradient-to-b from-red-700 to-transparent rounded-t-full "></div>
+      </div>
+      <div className="bg-black py-10 px-48 ">
+        <h1 className="text-white font-bold text-2xl mb-7">Trending Now</h1>
+        <MovieList movies={movies.trendingMovies} showRank={true} />
+      </div>
+      <FeatureCard />
+      <FAQAccordion />
+      <div className="bg-black text-center">
+        <p className="text-white md:text-lg font-medium mb-5">
+          Ready to watch? Enter your email to create or restart your membership.
+        </p>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-2 max-w-2xl mx-auto">
+          <input
+            type="email"
+            placeholder="Email address"
+            className="flex-grow w-screen md:w-auto p-4 bg-black/60 border border-white/60 rounded text-white text-lg font-semibold placeholder-gray-300 focus:outline-solid focus:ring-2 focus:ring-white"
+          />
+          <Link>
+            <button className="w-full md:w-auto bg-red-700 hover:bg-red-800 text-white font-bold py-4 px-12 rounded text-2xl transition duration-300 ease-in-out">
+              Get Started &gt;
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      <DefaultFooter />
     </div>
   );
 };

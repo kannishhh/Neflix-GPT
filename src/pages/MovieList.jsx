@@ -2,7 +2,7 @@ import { useRef } from "react";
 import MovieCard from "./MovieCard";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const MovieList = ({ title, movies }) => {
+const MovieList = ({ title, movies, showRank = false }) => {
   const scrollRef = useRef();
 
   const scrollLeft = () => {
@@ -27,11 +27,15 @@ const MovieList = ({ title, movies }) => {
         className="flex overflow-x-scroll no-scrollbar pl-6 pr-2 space-x-2 transition-all duration-200"
       >
         <div className="flex">
-          {movies?.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              posterPath={movie.poster_path}
-            />
+          {movies?.map((movie, index) => (
+            <div key={movie.id} className="relative shrink-0 w-60">
+              {showRank && (
+                <div className="absolute right-7 top-3/12 z-10 text-black/50 text-[7rem] font-extrabold drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)] leading-none pointer-events-none select-none text-outline-white">
+                  {index + 1}
+                </div>
+              )}
+              <MovieCard  posterPath={movie.poster_path} />
+            </div>
           ))}
         </div>
         <button

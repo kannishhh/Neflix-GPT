@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+body {
+  overflow-x: hidden;
+}
 
 /* Hide scrollbar */
 .no-scrollbar::-webkit-scrollbar {
@@ -8,4 +11,8 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.text-outline-white {
+  -webkit-text-stroke: 2px white;
 }
