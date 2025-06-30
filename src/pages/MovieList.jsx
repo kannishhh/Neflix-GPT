@@ -30,7 +30,7 @@ const MovieList = ({ title, movies, showRank = false }) => {
           {movies?.map((movie, index) => (
             <div key={movie.id} className="relative shrink-0 w-60">
               {showRank && (
-                <div className="absolute right-7 top-3/12 z-10 text-black/50 text-[7rem] font-extrabold drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)] leading-none pointer-events-none select-none text-outline-white">
+                <div className="absolute right-7 top-3/12 z-10 text-red-700/50 text-[7rem] font-extrabold drop-shadow-[2px_2px_4px_rgba(0,0,0,0.8)] leading-none pointer-events-none select-none text-outline-white">
                   {index + 1}
                 </div>
               )}

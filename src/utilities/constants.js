@@ -18,10 +18,7 @@ export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
 export const SUPPORTED_LANGUAGES = [
   { identifier: "en", name: "English" },
-  { identifier: "in", name: "हिन्दी" },
-  // { identifier: "punjabi", name: "Punjabi" },
-  // { identifier: "spanish", name: "Spanish" },
-  // { identifier: "french", name: "French" },
+  { identifier: "hi", name: "हिन्दी" },
 ];
 
 export const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;

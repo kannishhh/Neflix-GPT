@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import lang from "../utilities/langaugeConstants";
+import { gptLang } from "../i18n";
 import { useRef } from "react";
 import generateAiContent from "../utilities/googleApi";
 import { API_OPTIONS } from "../utilities/constants";
@@ -53,13 +53,13 @@ const GptSearchBar = () => {
           ref={searchText}
           type="text"
           className="p-2 m-2 bg-white col-span-9 rounded font-semibold text-lg"
-          placeholder={lang[langKey].gptSearchPlaceholder}
+          placeholder={gptLang[langKey].gptSearchPlaceholder}
         />
         <button
           className="py-2 px-4 m-2 bg-red-700/70 text-white rounded col-span-3 text-lg hover:bg-red-800/70"
           onClick={handleGptSearchClick}
         >
-          {lang[langKey].search}
+          {gptLang[langKey].search}
         </button>
       </form>
     </div>
