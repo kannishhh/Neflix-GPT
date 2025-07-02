@@ -4,7 +4,8 @@ import { changeLanguage } from "../stores/configSLice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
-import { homeLang } from "../i18n";
+import { homeLang } from "../utilities/i18n";
+
 
 const DefaultHeader = () => {
   const langKey = useSelector((store) => store.config?.lang);

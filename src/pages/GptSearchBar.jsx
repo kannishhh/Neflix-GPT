@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { gptLang } from "../i18n";
+import { gptLang } from "../utilities/i18n";
 import { useRef } from "react";
 import generateAiContent from "../utilities/googleApi";
 import { API_OPTIONS } from "../utilities/constants";
@@ -12,9 +12,9 @@ const GptSearchBar = () => {
 
   const searchMovieTMDB = async (movie) => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/search/movie?query=" +
-        movie +
-        "&include_adult=false&language=en-US&page=1",
+      `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1&api_key=${
+        import.meta.env.VITE_TMDB_KEY
+      }`,
       API_OPTIONS
     );
     const json = await data.json();
@@ -36,7 +36,6 @@ const GptSearchBar = () => {
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
 
     const tmdbResult = await Promise.all(promiseArray);
-    console.log(tmdbResult);
 
     dispatch(
       addGptMovieResults({ movieNames: gptMovies, movieResults: tmdbResult })

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { SUPPORTED_LANGUAGES } from "../utilities/constants";
 import { changeLanguage } from "../stores/configSLice";
-import { footerLang } from "../i18n";
+import { footerLang } from "../utilities/i18n";
 
 const DefaultFooter = () => {
   const langKey = useSelector((store) => store.config?.lang);

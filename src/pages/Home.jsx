@@ -7,7 +7,7 @@ import FAQAccordion from "./FAQAccordion";
 import DefaultFooter from "../layouts/DefaultFooter";
 import DefaultHeader from "../layouts/DefaultHeader";
 import { Link } from "react-router-dom";
-import { homeLang } from "../i18n"; 
+import { homeLang } from "../utilities/i18n";
 
 const Home = () => {
   useTrendingMovies();

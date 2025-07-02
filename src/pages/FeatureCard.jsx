@@ -5,7 +5,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
-import { featureCardLang } from "../i18n";
+import { featureCardLang } from "../utilities/i18n";
 
 const FeatureCard = () => {
   const langKey = useSelector((store) => store.config?.lang);

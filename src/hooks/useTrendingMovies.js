@@ -7,7 +7,7 @@ const useTrendingMovies = () => {
   const dispatch = useDispatch();
   const getTrendingMovies = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/tv/airing_today",
+      `https://api.themoviedb.org/3/tv/airing_today?api_key=${import.meta.env.VITE_TMDB_KEY}`,
       API_OPTIONS
     );
     const json = await data.json()

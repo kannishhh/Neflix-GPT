@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { faqLang } from "../i18n";
+import { faqLang } from "../utilities/i18n";
 
 const FAQAccordion = () => {
   const langKey = useSelector((store) => store.config.lang);

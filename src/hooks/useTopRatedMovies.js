@@ -7,7 +7,7 @@ const useTopRatedMovies = () => {
   const dispatch = useDispatch();
   const getTopRatedMovies = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/tv/top_rated?",
+      `https://api.themoviedb.org/3/tv/top_rated?api_key=${import.meta.env.VITE_TMDB_KEY}`,
       API_OPTIONS
     );
     const json = await data.json();
