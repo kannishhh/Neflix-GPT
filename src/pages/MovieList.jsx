@@ -34,7 +34,13 @@ const MovieList = ({ title, movies, showRank = false }) => {
                   {index + 1}
                 </div>
               )}
-              <MovieCard  posterPath={movie.poster_path} />
+              <MovieCard
+                posterPath={
+                  movie.poster_path
+                    ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
+                    : movie.fullThumb
+                }
+              />
             </div>
           ))}
         </div>

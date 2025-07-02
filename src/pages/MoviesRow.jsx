@@ -16,6 +16,7 @@ const MovieRow = () => {
             movies={movies.upcomingMovies}
           />
           <MovieList title={"Top Rated"} movies={movies.topRatedMovies} />
+          <MovieList title={"Plex Movies"} movies={movies.plexMovies} />
         </div>
       </div>
     )
