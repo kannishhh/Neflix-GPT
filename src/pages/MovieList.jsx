@@ -1,16 +1,22 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import MovieCard from "./MovieCard";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import VideoModal from "./videoModal";
 
 const MovieList = ({ title, movies, showRank = false }) => {
+  const [modalUrl, setModalUrl] = useState(null);
+
   const scrollRef = useRef();
 
   const scrollLeft = () => {
     scrollRef.current.scrollBy({ left: -500, behaviour: "smooth" });
   };
-  const scrollRight = () => {
+  const scrollRight = () => {    
     scrollRef.current.scrollBy({ left: 500, behaviour: "smooth" });
   };
+
+  const handlePlay = (url) => setModalUrl(url);
+  const closeModal = () => setModalUrl(null);
   return (
     <div className="relative group mb-6">
       <h1 className="text-xl mb-2 px-6 font-bold text-white">{title}</h1>
@@ -40,6 +46,10 @@ const MovieList = ({ title, movies, showRank = false }) => {
                     ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
                     : movie.fullThumb
                 }
+                title={movie.title}
+                year={movie.year}
+                movie={movie}
+                onPlay={handlePlay}
               />
             </div>
           ))}
@@ -51,6 +61,7 @@ const MovieList = ({ title, movies, showRank = false }) => {
           <FaChevronRight size={28} />
         </button>
       </div>
+      <VideoModal videoUrl={modalUrl} onClose={closeModal} />
     </div>
   );
 };

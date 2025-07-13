@@ -7,7 +7,7 @@ const MovieRow = () => {
   return (
     movies.nowPlayingMovies && (
       <div className="bg-black text-white">
-        <div className="realtive z-20 pl-2 -mt-32">
+        <div className="realtive z-20 pl-2 -mt-56">
           <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
           <MovieList title={"Trending"} movies={movies.trendingMovies} showRank={true}/>
           <MovieList title={"Popular"} movies={movies.popularMovies} />

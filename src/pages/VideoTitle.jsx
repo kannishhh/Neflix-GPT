@@ -2,11 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons"; 
 
-const VideoTitle = ({ title }) => {
+const VideoTitle = ({ title}) => {
   return (
     <div className="flex flex-col justify-center absolute top-0 left-0 w-1/3 py-72  px-16  ">
       <h1 className="text-6xl font-bold text-red-600">{title}</h1>
-      {/* <p className="text-lg py-6 w-1/2">{overview}</p> */}
       <div className="my-6 flex space-x-1">
         <button className="bg-white text-black px-8 py-2 rounded text-center hover:bg-gray-300/70 font-semibold">
           <FontAwesomeIcon icon={faPlay} className="pr-3"/>
