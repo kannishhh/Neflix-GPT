@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import {Play} from "lucide-react"
 
 const MovieCard = ({ movie, onPlay }) => {
   const { title, year, poster_path, fullThumb } = movie;

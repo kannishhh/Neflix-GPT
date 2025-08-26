@@ -4,7 +4,7 @@ import { auth } from "../utilities/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { LOGO_URL, SUPPORTED_LANGUAGES, AVATAR_RED } from "../utilities/constants";
 import { toggleGptSearchView } from "../stores/gptSlice";
-import { changeLanguage } from "../stores/configSLice";
+import { changeLanguage } from "../stores/configSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faHouse, faLanguage } from "@fortawesome/free-solid-svg-icons";
 

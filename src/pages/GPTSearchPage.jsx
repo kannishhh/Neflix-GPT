@@ -1,8 +1,8 @@
 import { BG_URL } from "../utilities/constants";
 import GptMovieSuggestions from "./GptMovieSuggestions";
-import GptSearchBar from "./gptSearchBar";
+import GptSearchBar from "./GptSearchBar";
 
-const GPTSearchPage = () => {
+const GptSearchPage = () => {
   return (
     <div>
       <div className="fixed -z-10">
@@ -14,4 +14,4 @@ const GPTSearchPage = () => {
   );
 };
 
-export default GPTSearchPage;
+export default GptSearchPage;

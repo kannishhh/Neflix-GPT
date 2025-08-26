@@ -3,7 +3,7 @@ import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { faqLang } from "../utilities/i18n";
 
-const FAQAccordion = () => {
+const FaqAccordion = () => {
   const langKey = useSelector((store) => store.config.lang);
   const faqs = [
     {
@@ -63,4 +63,4 @@ const FAQAccordion = () => {
   );
 };
 
-export default FAQAccordion;
+export default FaqAccordion;

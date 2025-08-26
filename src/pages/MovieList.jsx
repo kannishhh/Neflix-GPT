@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import MovieCard from "./MovieCard";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import VideoModal from "./videoModal";
+import VideoModal from "./VideoModal";
 
 const MovieList = ({ title, movies, showRank = false }) => {
   const [modalUrl, setModalUrl] = useState(null);

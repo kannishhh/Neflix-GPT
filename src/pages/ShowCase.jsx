@@ -1,5 +1,5 @@
-import VideoBackground from "./videoBackground";
-import VideoTitle from "./videoTitle";
+import VideoBackground from "./VideoBackground";
+import VideoTitle from "./VideoTitle";
 import { useSelector } from "react-redux";
 
 const ShowCase = () => {

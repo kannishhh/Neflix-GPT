@@ -1,13 +1,13 @@
-import { footerEn } from "./en/defaultFooter";
-import { faqEn } from "./en/faq";
-import { featureCardEn } from "./en/featureCard";
-import { gptEn } from "./en/gpt";
-import { homeEn } from "./en/home";
-import { footerHi } from "./hi/defaultFooter";
-import { faqHi } from "./hi/faq";
-import { featureCardHi } from "./hi/featureCard";
-import { gptHi } from "./hi/gpt";
-import { homeHi } from "./hi/home";
+import { footerEn } from "./en/DefaultFooter";
+import { faqEn } from "./en/Faq";
+import { featureCardEn } from "./en/FeatureCard";
+import { gptEn } from "./en/Gpt";
+import { homeEn } from "./en/Home";
+import { footerHi } from "./hi/DefaultFooter";
+import { faqHi } from "./hi/Faq";
+import { featureCardHi } from "./hi/FeatureCard";
+import { gptHi } from "./hi/Gpt";
+import { homeHi } from "./hi/Home";
 
 export const faqLang = {
   en: faqEn,

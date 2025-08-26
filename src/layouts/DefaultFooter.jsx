@@ -2,7 +2,7 @@ import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import { SUPPORTED_LANGUAGES } from "../utilities/constants";
-import { changeLanguage } from "../stores/configSLice";
+import { changeLanguage } from "../stores/configSlice";
 import { footerLang } from "../utilities/i18n";
 
 const DefaultFooter = () => {

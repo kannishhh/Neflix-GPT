@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
 import useTrendingMovies from "../hooks/useTrendingMovies";
 import FeatureCard from "./FeatureCard";
-import FAQAccordion from "./FAQAccordion";
+import FaqAccordion from "./FaqAccordion";
 import DefaultFooter from "../layouts/DefaultFooter";
 import DefaultHeader from "../layouts/DefaultHeader";
 import { Link } from "react-router-dom";
@@ -63,7 +63,7 @@ const Home = () => {
         <MovieList movies={movies.trendingMovies} showRank={true} />
       </div>
       <FeatureCard />
-      <FAQAccordion />
+      <FaqAccordion />
       <div className="bg-black text-center">
         <p className="text-white md:text-lg font-medium mb-5">
           {homeLang[langKey].readyToWatch}

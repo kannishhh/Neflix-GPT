@@ -1,6 +1,6 @@
 import checkValidData from "../utilities/validate";
 import { signInUser } from "./signIn";
-import { signUpUser } from "./signUp";
+import { signUpUser } from "./SignUp";
 
 export const handleAuth = async ({
   isSignInForm,
