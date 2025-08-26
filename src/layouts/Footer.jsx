@@ -1,7 +1,7 @@
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SUPPORTED_LANGUAGES } from "../utilities/constants";
-import { changeLanguage } from "../stores/configSLice";
+import { changeLanguage } from "../stores/configSlice";
 import { useDispatch } from "react-redux";
 
 const footerLinks = [

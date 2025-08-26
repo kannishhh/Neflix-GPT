@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { LOGO_URL, SUPPORTED_LANGUAGES } from "../utilities/constants";
-import { changeLanguage } from "../stores/configSLice";
+import { changeLanguage } from "../stores/configSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
