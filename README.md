@@ -2,18 +2,24 @@
 
 > A modern, AI-powered movie recommendation platform inspired by Netflix, combining the vast TMDB movie database with the intelligence of Google's Gemini AI.
 
+## 🎥 Demo Video
+
+<video src="./screenshot/netflix_gpt.mp4" controls="controls" width="100%">
+  Your browser does not support the video tag.
+</video>
+
 ## Features
 
-- ** Authentication**: Secure user sign-in and sign-up powered by Firebase Authentication.
-- ** Cinematic Browse Hub**: Explore trending, top-rated, action, comedy, and more through real-time TMDB API integration.
-- ** AI-Powered Recommendations (Gemini AI)**:
+- **Authentication**: Secure user sign-in and sign-up powered by Firebase Authentication.
+- **Cinematic Browse Hub**: Explore trending, top-rated, action, comedy, and more through real-time TMDB API integration.
+- **AI-Powered Recommendations (Gemini AI)**:
   - **Smart Search**: Enter a natural language prompt (e.g., "movies like Inception but scarier") and get 5 exact recommendations.
   - **Mood Matcher**: Tell the AI how you feel, and it will recommend the perfect, highly-rated hidden gem with a tailored explanation.
   - **Weekend Binge**: Request a vibe, and get a customized 4-movie/show binge playlist.
   - **Quick Explain**: Get a compelling 3-line elevator pitch for any movie.
-- ** Multilingual Support**: Seamlessly switch between languages (English, Hindi).
-- ** Fully Responsive**: Fluid UI built with TailwindCSS, looking great on desktops and mobile.
-- ** Modern Animations**: Smooth page transitions and interactive elements using Framer Motion.
+- **Multilingual Support**: Seamlessly switch between languages (English, Hindi).
+- **Fully Responsive**: Fluid UI built with TailwindCSS, looking great on desktops and mobile.
+- **Modern Animations**: Smooth page transitions and interactive elements using Framer Motion.
 
 ## Tech Stack
 
@@ -44,6 +50,7 @@
 ### Demo Credentials
 
 To quickly test the application without signing up, use the following demo account:
+
 - **Email**: `test2@demo.in`
 - **Password**: `Test@123`
 
