@@ -1,4 +1,5 @@
-import {Play} from "lucide-react"
+import { FaPlay } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const MovieCard = ({ movie, onPlay }) => {
   const { title, year, poster_path, fullThumb } = movie;
@@ -8,7 +9,7 @@ const MovieCard = ({ movie, onPlay }) => {
     const params = new URLSearchParams({ title });
     if (year) params.append("year", year);
 
-    const res = await fetch(`http://localhost:5000/api/play?${params}`);
+    const res = await fetch(`/api/play?${params}`);
     const data = await res.json();
     if (data.streamUrl) onPlay(data.streamUrl);
   } else {
@@ -29,17 +30,22 @@ const MovieCard = ({ movie, onPlay }) => {
     : fullThumb;
 
   return (
-    <div className="relative w-48 group">
-      <img src={posterPath} alt={title} className="rounded-xl w-full object-cover" />
-      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex items-center justify-center">
+    <motion.div 
+      whileHover={{ scale: 1.08, zIndex: 10 }}
+      transition={{ duration: 0.3 }}
+      className="relative w-36 md:w-48 group cursor-pointer flex-shrink-0"
+    >
+      <img src={posterPath} alt={title} className="rounded-xl w-full h-auto object-cover shadow-lg" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl flex flex-col items-center justify-center p-2">
         <button
           onClick={handlePlayClick}
-          className="text-black px-1 py-1 rounded-full hover:bg-black/10 shadow-md"
+          className="text-white bg-red-600/90 p-4 rounded-full hover:bg-red-500 shadow-2xl transition-transform hover:scale-110"
         >
-          <Play size={44} />
+          <FaPlay size={24} className="text-white" />
         </button>
+        <p className="text-white font-bold text-sm text-center mt-4 drop-shadow-md truncate w-full">{title}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

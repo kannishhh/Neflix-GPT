@@ -9,29 +9,31 @@ const MovieList = ({ title, movies, showRank = false }) => {
   const scrollRef = useRef();
 
   const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -500, behaviour: "smooth" });
+    scrollRef.current.scrollBy({ left: -500, behavior: "smooth" });
   };
   const scrollRight = () => {    
-    scrollRef.current.scrollBy({ left: 500, behaviour: "smooth" });
+    scrollRef.current.scrollBy({ left: 500, behavior: "smooth" });
   };
 
   const handlePlay = (url) => setModalUrl(url);
   const closeModal = () => setModalUrl(null);
+  
   return (
-    <div className="relative group mb-6">
-      <h1 className="text-xl mb-2 px-6 font-bold text-white">{title}</h1>
+    <div className="relative group mb-8 px-4 md:px-12">
+      <h1 className="text-2xl mb-4 font-bold text-white drop-shadow-md">{title}</h1>
 
-      <button
-        onClick={scrollLeft}
-        className="absolute left-2 top-[55%] -translate-y-1/2 z-10 hidden group-hover:block bg-black/60 rounded-full text-white p-2"
-      >
-        <FaChevronLeft size={28} />
-      </button>
+      <div className="relative">
+        <button
+          onClick={scrollLeft}
+          className="absolute left-0 top-0 bottom-0 z-20 w-12 bg-black/40 hover:bg-black/80 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300"
+        >
+          <FaChevronLeft size={36} className="transform hover:scale-125 transition-transform" />
+        </button>
 
-      <div
-        ref={scrollRef}
-        className="flex overflow-x-scroll no-scrollbar pl-6 pr-2 space-x-2 transition-all duration-200"
-      >
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-scroll no-scrollbar gap-4 pb-4 scroll-smooth snap-x snap-mandatory"
+        >
         <div className="flex">
           {movies?.map((movie, index) => (
             <div key={movie.id} className="relative shrink-0 w-60">
@@ -54,11 +56,12 @@ const MovieList = ({ title, movies, showRank = false }) => {
             </div>
           ))}
         </div>
+        </div>
         <button
           onClick={scrollRight}
-          className="absolute z-10 right-4 top-[55%] -translate-y-1/2 hidden group-hover:block bg-black/60 text-white rounded-full p-2"
+          className="absolute right-0 top-0 bottom-0 z-20 w-12 bg-black/40 hover:bg-black/80 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300"
         >
-          <FaChevronRight size={28} />
+          <FaChevronRight size={36} className="transform hover:scale-125 transition-transform" />
         </button>
       </div>
       <VideoModal videoUrl={modalUrl} onClose={closeModal} />

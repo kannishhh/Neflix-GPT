@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { gptLang } from "../utilities/i18n";
 import { useRef } from "react";
-import generateAiContent from "../utilities/googleApi";
+
 import { API_OPTIONS } from "../utilities/constants";
 import { addGptMovieResults } from "../stores/gptSlice";
 
@@ -24,22 +24,28 @@ const GptSearchBar = () => {
 
   const handleGptSearchClick = async () => {
     const queryInput = searchText.current.value;
+    if (!queryInput) return;
 
-    const gptQuery =
-      "Act as a movie Recommendation system and sugegst some movies for the query" +
-      queryInput +
-      ". Only give me names of 5 movies, comma sperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmal, Dhamal";
-    ("");
-    const gptResults = await generateAiContent(gptQuery);
-    const gptMovies = gptResults?.split(",").map((movie) => movie.trim());
+    try {
+      const gptRes = await fetch("/api/gpt/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: queryInput }),
+      });
+      const gptData = await gptRes.json();
+      
+      const gptMovies = gptData.movies;
+      if (!gptMovies || gptMovies.length === 0) return;
 
-    const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
+      const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
+      const tmdbResult = await Promise.all(promiseArray);
 
-    const tmdbResult = await Promise.all(promiseArray);
-
-    dispatch(
-      addGptMovieResults({ movieNames: gptMovies, movieResults: tmdbResult })
-    );
+      dispatch(
+        addGptMovieResults({ movieNames: gptMovies, movieResults: tmdbResult })
+      );
+    } catch (error) {
+      console.error("Error fetching AI recommendations:", error);
+    }
   };
 
   return (
