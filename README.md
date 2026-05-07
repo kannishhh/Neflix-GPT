@@ -4,7 +4,7 @@
 
 ## 🎥 Demo Video
 
-<video src="./screenshot/netflix_gpt.mp4" controls="controls" width="100%">
+<video src="https://github.com/kannishhh/Neflix-GPT/raw/main/screenshot/netflix_gpt.mp4" controls="controls" width="100%">
   Your browser does not support the video tag.
 </video>
 
@@ -47,12 +47,12 @@
 
 ## Getting Started
 
-### Demo Credentials
+<!-- ### Demo Credentials
 
 To quickly test the application without signing up, use the following demo account:
 
 - **Email**: `test2@demo.in`
-- **Password**: `Test@123`
+- **Password**: `Test@123` -->
 
 ### Prerequisites
 
