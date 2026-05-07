@@ -4,9 +4,7 @@
 
 ## 🎥 Demo Video
 
-<video src="https://github.com/kannishhh/Neflix-GPT/raw/main/screenshot/netflix_gpt.mp4" controls="controls" width="100%">
-  Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/4561eeb2-3170-457f-9600-32709582fc82
 
 ## Features
 
